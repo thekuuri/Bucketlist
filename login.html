@@ -25,15 +25,15 @@ box-shadow: 5px 5px 5px 5px #888888;
  <h3>Login to Bucketlist</h3>
  <h5>V 1.0</h5>
     <form >
-	<label>Email Address:
-     <input type="email" class="form-control" placeholder="enter your username" /></label>
+	<label>User Name:
+     <input type="email" id="userName" class="form-control" placeholder="enter your username" /></label>
 	<br>
 	<label>Password:
-	<input type="password" class="form-control" placeholder="enter your password" /></label>
+	<input type="password" id="pssWrd" class="form-control" placeholder="enter your password" /></label>
 	<br>
 	<br>
 	
-	<a href="list.html"><button type="button" class="btn btn-primary">Login</button></a>
+	<button type="button" onclick="form_validate()" class="btn btn-primary">Login</button>
     
     <br>
     <br>
@@ -43,6 +43,28 @@ box-shadow: 5px 5px 5px 5px #888888;
 	</form> 
 
 </div>
+
+
+
 </body>
+
+<script>
+
+function form_validate()
+{
+userName = document.getElementById("userName").value;
+pssWrd = document.getElementById("pssWrd").value;
+if(userName.length<1 || pssWrd.length<1 )
+{
+alert("Please enter your credentials");
+}else
+{
+location.href="list.html";
+}
+}
+</script>
+
+
+</html>
 
 

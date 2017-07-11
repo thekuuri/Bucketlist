@@ -26,25 +26,23 @@ box-shadow: 5px 5px 5px 5px #888888;
  <h3>Register new user to Bucketlist</h3>
  <h5>V 1.0</h5>
     <form >
-	<label>Email Address:
-     <input type="email" class="form-control" placeholder="enter your username" /></label>
-	<br>
+	
 	<label>Name:
-	<input type="text" class="form-control" placeholder="e.g John Doe" /></label>
+	<input type="text" class="form-control" id="userName" placeholder="e.g John Doe" /></label>
 	<br>
 	<label>D.O.B:
-	<input type="calendar" class="form-control" placeholder="Date of Birth" /></label>
+	<input type="date" onchange="validate_date()" id="dob" class="form-control" placeholder="Date of Birth" /></label>
 	<br>
 	<label>Password:
-	<input type="password" class="form-control" placeholder="enter your password" /></label>
+	<input type="password" class="form-control" id="pssWrd2" placeholder="enter your password" /></label>
 	<br>
 	<label>Confirm Password:
-	<input type="password" class="form-control" placeholder="confirm your password" /></label>
+	<input type="password" class="form-control"  id="pssWrd" onchange="validate_Passwrd()" placeholder="confirm your password" /></label>
 	<br>
 	
 	<br>
 	
-	<button type="button" class="btn btn-primary">Save</button>
+	<button type="button" onclick="form_validate()" class="btn btn-primary">Save</button>
     
     <br>
     <br>
@@ -53,5 +51,59 @@ box-shadow: 5px 5px 5px 5px #888888;
 
 </div>
 </body>
+
+<script>
+
+function validate_date()
+{
+
+userDOB = document.getElementById("dob").value;
+var d= new Date();
+userStructureDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+var date2 = new Date(userStructureDate);
+var date1 = new Date(userDOB);
+
+var diffDays = date2.getDate() - date1.getDate(); 
+
+if (diffDays<1)
+{
+
+alert("Invalid date, you can't be born in the future :) please select a valid date");
+document.getElementById("dob").value="";
+}
+
+}
+
+
+function form_validate()
+{
+
+userName = document.getElementById("userName").value;
+pssWrd = document.getElementById("pssWrd").value;
+userDOB = document.getElementById("dob").value;
+if(userName.length<1 || pssWrd.length<1 || userDOB.length<1 )
+{
+alert("Please enter valid credentials");
+}else
+{
+alert("Registration successful!");
+location.href="login.html";
+}
+}
+
+
+function validate_Passwrd()
+{
+if(document.getElementById("pssWrd").value !=document.getElementById("pssWrd2").value)
+{
+alert("Password missmatch");
+document.getElementById("pssWrd").value="";
+}
+
+}
+
+</script>
+
+</html>
 
 

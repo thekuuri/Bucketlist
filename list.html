@@ -17,7 +17,7 @@ width:35%;
 text-align:center;
 background-color:#fff;
 box-shadow: 5px 5px 5px 5px #888888;
-
+list-style: none;
 }
 
 li{
@@ -41,21 +41,80 @@ font-size:1.5em;
 <br>
 <h3><a href="login.html">&larr; logout</a></h2>
  <h3>My Bucketlist</h3>
-<a href="newitem.html"><button type="button" class="btn btn-info w3-circle  buttonTop">+</button></a>
+<button type="button" onclick="addtoList()" class="btn btn-info w3-circle  buttonTop">+</button>
+<div id="bucketList">
 
-     <ul style="list-style: none;">
-	    <li><a href="update.html"><span><img src="ok-16.png"></span> Learning how swimming </a></li><br>
-	    <li><span><img src="ok-16.png"></span> Learn sign language </li><br>
-        <li><span><img src="ok-16.png"></span> Go scubba diving </li><br>
-     </ul>
-
-    </label>
-	<br>
-	
-	
-	</form> 
-
+ </div>
 </div>
 </body>
+
+<script>
+
+
+
+var goal_Name=[];
+var goal_status=[];
+
+goal_Name.push("Learning how swimming","Learn sign language","Go scubba diving","Learn to fly","Join Andela");
+goal_status.push("complete","complete","complete","new","new");
+
+printGoals();
+function printGoals()
+{
+//containing the status,goalName 
+document.getElementById("bucketList").innerHTML="";
+ for (i = 0; i < goal_Name.length; i++) { 
+   document.getElementById("bucketList").innerHTML+= "<li onclick=ammendGoal(" + i +")><span><img src='" + goal_status[i] + ".png'></span> " + goal_Name[i] +"</li><br>";
+}
+}
+
+
+
+
+function addtoList()
+{
+newGoalName=prompt("Enter goal name","");
+	if(newGoalName.length<1)
+	{
+	alert("Invalid Goal name");
+	return 0;
+	}
+newGoalSatus=prompt("Enter goal status","new");
+	if(newGoalSatus.length<1)
+	{
+	alert("Invalid Goal Status");
+	return 0;
+	}
+goal_status.push(newGoalSatus);
+goal_Name.push(newGoalName);
+	printGoals();
+}
+
+function ammendGoal(index)
+{
+
+newGoalName=prompt("Edit goal name",goal_Name[index]);
+	if(newGoalName.length<1)
+	{
+	alert("Invalid Goal name");
+	return 0;
+	}
+newGoalSatus=prompt("Edit goal status",goal_status[index]);
+	if(newGoalSatus.length<1)
+	{
+	alert("Invalid Goal Status");
+	return 0;
+	}
+
+goal_status[index]=newGoalSatus;
+goal_Name[index]=newGoalName;
+printGoals();
+}
+
+
+
+</script>
+
+</html>
 
 
